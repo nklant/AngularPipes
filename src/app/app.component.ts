@@ -47,8 +47,8 @@ export class AppComponent {
     this.servers.push({
       instanceType: 'small',
       name: 'New Server',
-      status: 'stable',
-      started: new Date(15, 1, 2017)
+      status: 'offline',
+      started: new Date(Date.now())
     });
   }
 }
