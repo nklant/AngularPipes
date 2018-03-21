@@ -6,26 +6,28 @@
           <input type="text" class="form-control" [(ngModel)]="filteredStatus" #inputField>
           <div *ngIf="!inputField.value">
             <br>
-            <button 
-              type="button" 
-              class="btn btn-primary" 
+            <button
+              type="button"
+              class="btn btn-primary"
               (click)="onAddServer()">Add Server
             </button>
           </div>
         </div>
       </div>
+      <br><br>
+      <h2>App Status: {{ appStatus | async }}</h2>
       <hr>
       <ul class="list-group">
         <li
           class="list-group-item"
-          *ngFor="let server of servers | filter:filteredStatus:'status'"
+          *ngFor="let server of servers | filter:filteredStatus:'status' | sort:'name'"
           [ngClass]="getStatusClasses(server)">
           <span
             class="badge">
             {{ server.status }}
           </span>
-          <strong>{{ server.name | shorten:15 }}</strong> | 
-          {{ server.instanceType | uppercase }} | 
+          <strong>{{ server.name | shorten:15 }}</strong> |
+          {{ server.instanceType | uppercase | reverse }} |
           {{ server.started | date:'fullDate' | uppercase }}
         </li>
       </ul>
